@@ -1,14 +1,16 @@
+import { BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
 import Product from "./pages/Product";
 import Home from "./pages/Home";
 import ProductList from "./pages/ProductList";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
+import Success from "./pages/Success";
+import { useSelector } from 'react-redux';
 
-import { BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
 
 const App = () => {
-  let user = true;
+  let user = useSelector(state => state.user.currentUser);
   return(
     
     <div className="App">
@@ -21,6 +23,7 @@ const App = () => {
           <Route path='/register' element={user ? <Navigate to="/"/> : <Register/> }/>
           <Route path='/login' element= {user ? <Navigate to="/"/> : <Login/> }/>
           <Route path='/cart' element={<Cart />}/>
+          <Route path='/success' element={<Success />}/>
       </Routes>
     </Router>
   </div>
